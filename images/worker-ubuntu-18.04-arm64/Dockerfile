@@ -1,6 +1,6 @@
 FROM arm64v8/ubuntu:18.04
 
-LABEL maintainer="oleavr@frida.re"
+LABEL maintainer="oleavr@ainakan.re"
 
 RUN apt-get update \
 	&& DEBIAN_FRONTEND=noninteractive apt-get install -y \
@@ -35,12 +35,12 @@ RUN apt-get update \
 	&& groupadd -r buildbot \
 	&& useradd -r -g buildbot buildbot \
 	&& mkdir -p /home/buildbot/.credentials \
-	&& ln -s .credentials/github-token /home/buildbot/.frida-release-github-token \
+	&& ln -s .credentials/github-token /home/buildbot/.ainakan-release-github-token \
 	&& ln -s .credentials/npmrc /home/buildbot/.npmrc \
 	&& ln -s .credentials/pypirc /home/buildbot/.pypirc \
 	&& chown -R buildbot:buildbot /home/buildbot \
-	&& mkdir -p /worker/info /worker/frida-ubuntu_18_04-arm64/build \
-	&& echo 'Ole Andre Vadla Ravnas <oleavr@frida.re>' > /worker/info/admin \
+	&& mkdir -p /worker/info /worker/ainakan-ubuntu_18_04-arm64/build \
+	&& echo 'Ole Andre Vadla Ravnas <oleavr@ainakan.re>' > /worker/info/admin \
 	&& echo 'Ubuntu 18.04 arm64' > /worker/info/host \
 	&& chown -R buildbot:buildbot /worker
 COPY --chown=buildbot:buildbot buildbot.tac /worker/buildbot.tac
@@ -51,7 +51,7 @@ ENV LC_ALL en_US.UTF-8
 
 USER buildbot
 WORKDIR /worker
-VOLUME ["/home/buildbot/.credentials", "/worker/frida-ubuntu_18_04-arm64/build"]
+VOLUME ["/home/buildbot/.credentials", "/worker/ainakan-ubuntu_18_04-arm64/build"]
 
 ENTRYPOINT ["buildbot-worker"]
 CMD ["start", "--nodaemon"]

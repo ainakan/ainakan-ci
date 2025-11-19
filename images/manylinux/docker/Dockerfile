@@ -1,7 +1,7 @@
-FROM fridadotre/manylinux-base-x86_64
+FROM ainakandotre/manylinux-base-x86_64
 
 LABEL description="Environment for building portable Linux binaries using modern GCC"
-LABEL maintainer="oleavr@frida.re"
+LABEL maintainer="oleavr@ainakan.re"
 
 ARG CORES=8
 ARG DEVTOOLS_PREFIX=/opt/devtools

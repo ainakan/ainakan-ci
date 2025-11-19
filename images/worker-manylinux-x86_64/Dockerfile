@@ -1,6 +1,6 @@
-FROM fridadotre/manylinux-x86_64
+FROM ainakandotre/manylinux-x86_64
 
-LABEL maintainer="oleavr@frida.re"
+LABEL maintainer="oleavr@ainakan.re"
 
 ENV PATH="/opt/python-64/cp27-cp27mu/bin:/opt/python-64/cp38-cp38/bin:/opt/node-64/bin:$PATH"
 
@@ -22,20 +22,20 @@ RUN \
 	&& useradd -r -g buildbot buildbot \
 	&& mkdir -p /home/buildbot/.credentials \
 	&& ln -s .credentials/cfcli.yml /home/buildbot/.cfcli.yml \
-	&& ln -s .credentials/github-token /home/buildbot/.frida-release-github-token \
+	&& ln -s .credentials/github-token /home/buildbot/.ainakan-release-github-token \
 	&& ln -s .credentials/npmrc /home/buildbot/.npmrc \
 	&& ln -s .credentials/pypirc /home/buildbot/.pypirc \
 	&& ln -s .credentials/s3cfg /home/buildbot/.s3cfg \
 	&& chown -R buildbot:buildbot /home/buildbot \
-	&& mkdir -p /worker/info /worker/frida-manylinux-x86_64/build \
-	&& echo 'Ole Andre Vadla Ravnas <oleavr@frida.re>' > /worker/info/admin \
+	&& mkdir -p /worker/info /worker/ainakan-manylinux-x86_64/build \
+	&& echo 'Ole Andre Vadla Ravnas <oleavr@ainakan.re>' > /worker/info/admin \
 	&& echo 'ManyLinux x86_64' > /worker/info/host \
 	&& chown -R buildbot:buildbot /worker
 COPY --chown=buildbot:buildbot buildbot.tac /worker/buildbot.tac
 
 USER buildbot
 WORKDIR /worker
-VOLUME ["/home/buildbot/.credentials", "/worker/frida-manylinux-x86_64/build"]
+VOLUME ["/home/buildbot/.credentials", "/worker/ainakan-manylinux-x86_64/build"]
 
 ENTRYPOINT ["buildbot-worker"]
 CMD ["start", "--nodaemon"]

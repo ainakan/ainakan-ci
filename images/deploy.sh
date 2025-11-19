@@ -8,7 +8,7 @@ fi
 
 set -ex
 
-tag=fridadotre/$name
+tag=ainakandotre/$name
 
 docker build -t $tag -f $name/Dockerfile $name/
 docker push $tag

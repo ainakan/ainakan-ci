@@ -20,15 +20,15 @@ trap cleanup EXIT
 set -e
 
 cp -a /opt/sabrelite/assets "$fwdir"
-mkdir -p "$fwdir/opt/frida"
-tar -C "$fwdir/opt/frida" -xf "$payload"
+mkdir -p "$fwdir/opt/ainakan"
+tar -C "$fwdir/opt/ainakan" -xf "$payload"
 echo "[+raw] /opt=$fwdir/opt" >> "$buildfile"
-cat << EOF > "$fwdir/opt/frida/run.sh"
+cat << EOF > "$fwdir/opt/ainakan/run.sh"
 (set -ex; $script)
 echo "::set-exit-status \$?"
 EOF
-chmod 755 "$fwdir/opt/frida/run.sh"
-sed -ie "s,ksh &,/opt/frida/run.sh &," "$buildfile"
+chmod 755 "$fwdir/opt/ainakan/run.sh"
+sed -ie "s,ksh &,/opt/ainakan/run.sh &," "$buildfile"
 mkifs "-r$fwdir" "$buildfile" "$ifsfile"
 
 mkfifo "$intdir/serial.in" "$intdir/serial.out"

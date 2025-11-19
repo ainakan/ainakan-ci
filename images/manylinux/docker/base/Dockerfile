@@ -1,7 +1,7 @@
 FROM centos:5
 
 LABEL description="Base image for building portable Linux binaries using modern GCC"
-LABEL maintainer="oleavr@frida.re"
+LABEL maintainer="oleavr@ainakan.re"
 
 ARG CORES=8
 ARG DEVTOOLS_PREFIX=/opt/devtools

@@ -1,6 +1,6 @@
 FROM fedora:35
 
-LABEL maintainer="oleavr@frida.re"
+LABEL maintainer="oleavr@ainakan.re"
 
 RUN \
 	dnf install -y \
@@ -31,19 +31,19 @@ RUN \
 	&& groupadd -r buildbot \
 	&& useradd -r -g buildbot buildbot \
 	&& mkdir -p /home/buildbot/.credentials \
-	&& ln -s .credentials/github-token /home/buildbot/.frida-release-github-token \
+	&& ln -s .credentials/github-token /home/buildbot/.ainakan-release-github-token \
 	&& ln -s .credentials/npmrc /home/buildbot/.npmrc \
 	&& ln -s .credentials/pypirc /home/buildbot/.pypirc \
 	&& chown -R buildbot:buildbot /home/buildbot \
-	&& mkdir -p /worker/info /worker/frida-fedora_35-x86_64/build \
-	&& echo 'Ole Andre Vadla Ravnas <oleavr@frida.re>' > /worker/info/admin \
+	&& mkdir -p /worker/info /worker/ainakan-fedora_35-x86_64/build \
+	&& echo 'Ole Andre Vadla Ravnas <oleavr@ainakan.re>' > /worker/info/admin \
 	&& echo 'Fedora 35 x86_64' > /worker/info/host \
 	&& chown -R buildbot:buildbot /worker
 COPY --chown=buildbot:buildbot buildbot.tac /worker/buildbot.tac
 
 USER buildbot
 WORKDIR /worker
-VOLUME ["/home/buildbot/.credentials", "/worker/frida-fedora_35-x86_64/build"]
+VOLUME ["/home/buildbot/.credentials", "/worker/ainakan-fedora_35-x86_64/build"]
 
 ENTRYPOINT ["buildbot-worker"]
 CMD ["start", "--nodaemon"]

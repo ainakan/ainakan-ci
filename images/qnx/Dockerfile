@@ -1,6 +1,6 @@
 FROM ubuntu:20.04
 
-LABEL maintainer="oleavr@frida.re"
+LABEL maintainer="oleavr@ainakan.re"
 
 RUN apt-get update \
 	&& export DEBIAN_FRONTEND=noninteractive \
